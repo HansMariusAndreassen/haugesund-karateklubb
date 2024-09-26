@@ -11,7 +11,7 @@ export const Footer = () => {
           </div>
           <div className="flex space-x-4">
             <a
-              href="https://facebook.com"
+              href="https://www.facebook.com/HaugesundKK"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
@@ -19,14 +19,14 @@ export const Footer = () => {
               <Facebook className="h-6 w-6" />
             </a>
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/haugesundkarateklubb/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
             >
               <Instagram className="h-6 w-6" />
             </a>
-            <a href="mailto:info@haugesundkarate.no" aria-label="E-post">
+            <a href="mailto:hanserikhornell@gmail.com" aria-label="E-post">
               <Mail className="h-6 w-6" />
             </a>
           </div>
