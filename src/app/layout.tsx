@@ -25,6 +25,9 @@ export const metadata: Metadata = {
     ],
     type: "website",
   },
+  icons: {
+    icon: "/favicon-32x32.png",
+  },
 };
 
 const navItems = [
