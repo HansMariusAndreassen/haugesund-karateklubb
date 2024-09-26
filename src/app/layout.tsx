@@ -17,9 +17,9 @@ export const metadata: Metadata = {
     siteName: "Haugesund Karateklubb",
     images: [
       {
-        url: "/karateklubblogo.svg",
-        width: 200,
-        height: 600,
+        url: "/hkklogo.png",
+        width: 220,
+        height: 311,
         alt: "Haugesund Karateklubb",
       },
     ],
