@@ -8,18 +8,18 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Haugesund Karateklubb",
-  description: "Created with Next.js and shadcn/ui",
-  keywords: "karate, haugesund, kampsport, selvforsvar", // Add relevant keywords
+  description: "Klubben for alle.",
+  keywords: "karate, haugesund, kampsport, selvforsvar",
   openGraph: {
     title: "Haugesund Karateklubb",
-    description: "Join Haugesund Karateklubb for martial arts training.",
-    url: "https://haugesundkarate.no", // Example URL
+    description: "Klubben for alle.",
+    url: "https://haugesundkarate.no",
     siteName: "Haugesund Karateklubb",
     images: [
       {
-        url: "/karateklubblogo.svg", // Add an appropriate OpenGraph image
-        width: 1200,
-        height: 630,
+        url: "/logo.jpg",
+        width: 100,
+        height: 100,
         alt: "Haugesund Karateklubb",
       },
     ],
