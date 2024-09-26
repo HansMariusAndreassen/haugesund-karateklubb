@@ -1,96 +1,77 @@
-"use client";
-
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
-
-import Image from "next/image";
 import Link from "next/link";
-import { Header } from "@/Header/Header";
-import { Footer } from "@/components/Footer/Footer";
 import Classes from "../Classes/Classes";
+import Image from "next/image";
+import { SpondInfo } from "../Spond/SpondInfo";
 
 export default function HkkContent() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const navItems = [
-    { href: "#treningstider", label: "Treningstider" },
-    { href: "#bli-medlem", label: "Bli medlem" },
-    { href: "#sponsorer", label: "Sponsorer" },
-  ];
-
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        navItems={navItems}
-      ></Header>
+    <>
       <main className="flex-grow container mx-auto px-4 py-8">
-        <section className="mb-12">
-          <h2 className="text-3xl font-bold mb-4">
+        <section className="mb-12 container">
+          <h2 className="text-4xl font-bold mb-4 text-center py-8">
             Velkommen til Haugesund Karateklubb
           </h2>
-          <p className="text-lg text-gray-700">
-            Vi er dedikert til å lære bort karate i et inkluderende og
-            motiverende miljø. Uansett om du er nybegynner eller erfaren, har vi
-            et tilbud for deg!
-          </p>
+          <div className="flex flex-col gap-4 px-8">
+            <p className="text-lg text-gray-700">
+              Vi er en inkluderende klubb som tilbyr variert kampsporttrening
+              for både barn og voksne i våre flotte lokaler på Røldalvegen 6,
+              Haugesund.
+            </p>
+            Her har vi to store treningsområder, perfekte for allsidig trening,
+            med plass til alle nivåer. Hos oss kan du trene ulike disipliner som
+            Kali, Dento Ryu karate, Goshin Jujutsu (selvforsvar), tradisjonell
+            Shotokan karate og sportskarate under WKF-regelverket.
+            <p className="text-lg text-gray-700">
+              Vi har tilpassede ettermiddagstreninger i vår dojo for alle
+              ferdighetsnivåer, og vi arrangerer nybegynnertreninger på skoler i
+              distriktet. Vi er stolte av å være en klubb for alle, uavhengig av
+              økonomi.
+            </p>
+            <p className="text-lg text-gray-700">
+              Ingen skal holdes tilbake fra å trene hos oss på grunn av
+              økonomiske årsaker. Vi tilbyr betalingsfritak ved behov – ta
+              kontakt med Hans Erik for mer informasjon. Hos Haugesund
+              Karateklubb er fellesskap og inkludering i fokus, og vi har alltid
+              plass til flere medlemmer. Vi sees på trening!
+            </p>
+          </div>
         </section>
-
         <Classes />
-
-        <section id="bli-medlem" className="mb-12">
+        <SpondInfo />
+        <section id="bli-medlem" className="container py-12">
           <h2 className="text-2xl font-bold mb-4">Bli medlem</h2>
           <p className="mb-4">
             Ønsker du å bli en del av vår karateklubb? Det er enkelt å melde seg
             inn:
           </p>
-          <ol className="list-decimal list-inside mb-4">
-            <li>Kom innom en av våre treninger</li>
-            <li>Snakk med en av våre instruktører</li>
-            <li>Fyll ut innmeldingsskjema</li>
-            <li>Betal medlemskontingent</li>
-          </ol>
+
           <Button>
-            <Link href="/innmelding">Meld deg inn nå</Link>
+            <Link href="https://club.spond.com/landing/signup/haugesundkk/form/7F473E78E278414F9E6931F233F98141">
+              Meld deg inn nå
+            </Link>
           </Button>
         </section>
-
-        <section id="sponsorer" className="mb-12">
+        <section id="sponsorer" className="py-12 container">
           <h2 className="text-2xl font-bold mb-4">Våre sponsorer</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <Image
-              src="/placeholder.svg?height=100&width=200"
+              src="https://www.ragnsells.com/globalassets/ragnsells.com/settings/ragn-sells-logo-web-2020.svg"
               alt="Sponsor 1"
               width={200}
               height={100}
-              className="bg-gray-200 rounded"
+              className="rounded"
             />
             <Image
-              src="/placeholder.svg?height=100&width=200"
+              src="https://www.haugesund-sparebank.no/wp-content/themes/haugesund-sparebank.no/images/logo_haugesund-sparebank.svg"
               alt="Sponsor 2"
               width={200}
               height={100}
-              className="bg-gray-200 rounded"
-            />
-            <Image
-              src="/placeholder.svg?height=100&width=200"
-              alt="Sponsor 3"
-              width={200}
-              height={100}
-              className="bg-gray-200 rounded"
-            />
-            <Image
-              src="/placeholder.svg?height=100&width=200"
-              alt="Sponsor 4"
-              width={200}
-              height={100}
-              className="bg-gray-200 rounded"
+              className="rounded"
             />
           </div>
         </section>
       </main>
-      <Footer />
-    </div>
+    </>
   );
 }

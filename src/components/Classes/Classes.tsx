@@ -27,9 +27,14 @@ export default function Classes() {
     <div className="container mx-auto px-4 py-8">
       <h2 className="text-3xl font-bold mb-6 text-center">
         Timeplan Haugesund Karateklubb
-      </h2>
+      </h2>{" "}
+      <p className="text-sm text-gray-600 pb-8 container">
+        Vennligst merk at dersom du er nybegynner og ikke har anledning til å
+        delta på de dagene hvor nybegynnerklasser er satt opp, er du velkommen
+        til å delta på en annen dag som passer deg bedre.
+      </p>
       <Tabs value={currentDay} onValueChange={setCurrentDay} className="w-full">
-        <TabsList className="grid w-full grid-cols-5 mb-8">
+        <TabsList className="grid w-full grid-cols-5 mb-8 ">
           {scheduleData.map((day) => (
             <TabsTrigger
               key={day.day}
