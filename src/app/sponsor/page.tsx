@@ -1,17 +1,17 @@
 export default function SponsorPage() {
   return (
-    <div className="container mx-auto p-12">
+    <div className="container mx-auto py-12">
       <h1 className="text-3xl font-bold mb-6">
         Sponsorpakker hos Haugesund Karateklubb
       </h1>
-      <p className="p-4">
+      <p className="py-4">
         Vi i Haugesund Karateklubb er stolte av å tilby en unik mulighet til å
         støtte lokalsamfunnet gjennom vårt inkluderende sponsorprogram. Som
         sponsor vil du være med på å fremme helse, disiplin og fellesskap blant
         våre medlemmer i alle aldre. Vi er en klubb for alle, der samhold,
         trivsel og inkludering står i sentrum.
       </p>
-      <p className="p-4">
+      <p className="py-4">
         Vårt mål er å gjøre karate tilgjengelig for alle, uavhengig av bakgrunn
         eller økonomi. Derfor låner vi ut drakter og utstyr til våre medlemmer,
         slik at ingen skal føle seg utenfor. I tillegg arrangerer vi
@@ -19,7 +19,7 @@ export default function SponsorPage() {
         delta og oppleve gleden ved å konkurrere i et trygt og støttende miljø.
       </p>
 
-      <h2 className="text-2xl font-bold p-4">Våre Sponsorpakker</h2>
+      <h2 className="text-2xl font-bold py-4">Våre Sponsorpakker</h2>
 
       <div className="p-6">
         <h3 className="text-xl font-bold">Ippon-pakken</h3>
@@ -43,7 +43,7 @@ export default function SponsorPage() {
         </ul>
       </div>
 
-      <div className="p-6">
+      <div className="py-6">
         <h3 className="text-xl font-bold">Yuko-pakken</h3>
         <p className="p-2">Kr 5 000 eller tilsvarende</p>
         <ul className="list-disc pl-6">
@@ -52,15 +52,15 @@ export default function SponsorPage() {
         </ul>
       </div>
 
-      <h2 className="text-2xl font-bold p-4">Tilpasset Sponsoravtale</h2>
-      <p className="p-4">
+      <h2 className="text-2xl font-bold py-4">Tilpasset Sponsoravtale</h2>
+      <p className="py-4">
         Vi forstår at ulike bedrifter har ulike behov og ønsker, og vi er derfor
         åpne for å skreddersy en sponsorpakke som passer best for deg. Dette kan
         inkludere andre former for synlighet eller spesifikke ønsker for
         samarbeid.
       </p>
 
-      <p className="p-4">
+      <p className="py-4">
         Ved å støtte Haugesund Karateklubb er du med på å skape en trygg,
         inkluderende og positiv arena for barn, unge og voksne i lokalsamfunnet.
         Din støtte vil være avgjørende for at vi kan fortsette vårt arbeid med å
@@ -68,8 +68,8 @@ export default function SponsorPage() {
         opplever glede, fellesskap og mestring uavhengig av nivå eller bakgrunn.
       </p>
 
-      <h2 className="text-2xl font-bold p-4">Kontakt oss</h2>
-      <p className="p-4">
+      <h2 className="text-2xl font-bold py-4">Kontakt oss</h2>
+      <p className="py-4">
         For mer informasjon eller for å diskutere en tilpasset sponsoravtale,
         kontakt oss på e-post
         <a

@@ -7,12 +7,12 @@ import { SpondInfo } from "../Spond/SpondInfo";
 export default function HkkContent() {
   return (
     <>
-      <main className="flex-grow container mx-auto px-4 py-8">
+      <main className="flex-grow container mx-auto px-2 py-8">
         <section className="mb-12 container">
           <h2 className="text-4xl font-bold mb-4 text-center py-8">
             Velkommen til Haugesund Karateklubb
           </h2>
-          <div className="flex flex-col gap-4 px-8">
+          <div className="flex flex-col gap-4">
             <p className="text-lg text-gray-700">
               Vi er en inkluderende klubb som tilbyr variert kampsporttrening
               for både barn og voksne i våre flotte lokaler på Røldalvegen 6,
