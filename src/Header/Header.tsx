@@ -15,7 +15,7 @@ export const Header = ({ isOpen, setIsOpen, navItems }: HeaderProps) => {
     <header className="bg-white shadow-sm">
       <div className="mx-auto px-4 py-2 flex justify-between items-center">
         <a href="/" className="flex items-center gap-2">
-          <Image src="/logo.jpg" alt="Logo" width={70} height={70} />
+          <Image src="/karateklubblogo.svg" alt="Logo" width={40} height={40} />
           <h1 className="text-2xl font-bold text-gray-800">
             Haugesund Karateklubb
           </h1>
