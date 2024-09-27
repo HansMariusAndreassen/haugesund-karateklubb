@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
 
     // Trigger your revalidation logic here
     // This example revalidates the home page, but you might want to revalidate specific paths based on the updated document
-    revalidatePath("/");
+    revalidatePath("/blogg");
 
     return NextResponse.json({ message: "Revalidation triggered" });
   } catch (err) {

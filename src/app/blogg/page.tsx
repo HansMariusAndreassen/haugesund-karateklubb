@@ -50,8 +50,8 @@ export default async function Blog() {
                   <Image
                     src={newestPost.mainImage.asset.url}
                     alt={newestPost.mainImage.alt || newestPost.title}
-                    layout="fill"
-                    objectFit="cover"
+                    width={1200}
+                    height={630}
                     className="w-full h-full rounded-b-lg"
                   />
                 ) : (
@@ -65,12 +65,11 @@ export default async function Blog() {
               {newestPost.gallery && newestPost.gallery.length > 0 && (
                 <div className="grid grid-cols-3 gap-2 p-4">
                   {newestPost.gallery.map((image) => (
-                    <div key={image.asset._id} className="relative h-32 w-full">
+                    <div key={image.asset._id} className="relative h-32 w-auto">
                       <Image
                         src={image.asset.url}
                         alt={image.alt || `Gallery image`}
-                        layout="fill"
-                        objectFit="cover"
+                        fill
                         className="rounded-lg"
                       />
                     </div>
