@@ -1,12 +1,13 @@
 import { groq } from "next-sanity";
 
 export const postQuery = groq`
-  *[_type == "post"] | order(publishedAt desc) {
+  *[_type == "post" && !(_id in path("drafts.**"))] | order(publishedAt desc, _createdAt desc, _updatedAt desc) {
     _id,
     title,
-    "imageUrl": mainImage.asset->url,
-    body,
     slug,
+    mainImage{asset->{_id, url}},
+    gallery[]{asset->{_id, url}, alt},
+    body,
     publishedAt,
     excerpt,
     "author": author->name
@@ -17,9 +18,12 @@ export const singlePostQuery = groq`
   *[_type == "post" && slug.current == $slug][0] {
     _id,
     title,
-    "imageUrl": mainImage.asset->url,
+    slug, // Include slug to maintain consistency
+    mainImage{asset->{_id, url}},
+    gallery[]{asset->{_id, url}, alt},
     body,
     publishedAt,
+    excerpt,
     "author": author->name
   }
 `;
