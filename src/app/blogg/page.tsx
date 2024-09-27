@@ -1,3 +1,4 @@
+import { unstable_cache } from "next/cache";
 import { client } from "../../sanity/lib/client";
 import { postQuery } from "../../sanity/lib/queries";
 import Image from "next/image";
@@ -32,7 +33,13 @@ type Post = {
 };
 
 export default async function Blog() {
-  const posts: Post[] = await client.fetch(postQuery);
+  const getPosts = unstable_cache(
+    async () => client.fetch(postQuery),
+    ["posts"],
+    { tags: ["posts"], revalidate: 60 } // Revalidate every 60 seconds as a fallback
+  );
+
+  const posts: Post[] = await getPosts();
   const [newestPost, ...olderPosts] = posts;
 
   return (

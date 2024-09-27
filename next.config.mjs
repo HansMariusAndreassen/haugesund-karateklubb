@@ -10,7 +10,6 @@ const nextConfig = {
   },
   experimental: {
     taint: true,
-    revalidate: true,
   },
 };
 

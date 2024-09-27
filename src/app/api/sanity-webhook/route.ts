@@ -1,5 +1,3 @@
-// app/api/sanity-webhook/route.ts
-
 import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import crypto from "crypto";
@@ -27,12 +25,9 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    // Parse the body to get information about the updated document
     const parsedBody = JSON.parse(body);
     console.log("Webhook triggered for document:", parsedBody._id);
 
-    // Trigger your revalidation logic here
-    // This example revalidates the home page, but you might want to revalidate specific paths based on the updated document
     revalidatePath("/blogg");
 
     return NextResponse.json({ message: "Revalidation triggered" });
