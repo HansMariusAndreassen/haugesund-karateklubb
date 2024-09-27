@@ -1,12 +1,11 @@
 import { PortableText } from "@portabletext/react";
 import { client } from "../../../sanity/lib/client";
 import { singlePostQuery } from "../../../sanity/lib/queries";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ImageGallery } from "@/components/ImageGallery/ImageGallery";
 import { TypedObject } from "sanity";
-import ShadcnCarousel from "@/components/Carousel/Carousel";
 
 interface ImageType {
   asset: {
@@ -41,7 +40,7 @@ export default async function BlogPost({ params }: Props) {
     notFound();
   }
 
-  // Create an array of image objects for the carousel
+  // Prepare gallery images data
   const galleryImages = [
     ...(post.mainImage
       ? [{ src: post.mainImage.asset.url, alt: post.mainImage.alt || "" }]
@@ -62,24 +61,8 @@ export default async function BlogPost({ params }: Props) {
 
       <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
 
-      {post.mainImage && (
-        <div className="mb-6">
-          <Image
-            src={post.mainImage.asset.url}
-            alt={post.mainImage.alt || post.title}
-            width={1200}
-            height={630}
-            className="w-full h-auto rounded-lg"
-          />
-        </div>
-      )}
-
-      {/* Display Carousel if there are multiple images */}
-      {galleryImages.length > 0 && (
-        <div className="mb-6">
-          <ShadcnCarousel images={galleryImages} initialIndex={0} />
-        </div>
-      )}
+      {/* Use the ImageGallery client component */}
+      <ImageGallery images={galleryImages} title={post.title} />
 
       <div className="flex justify-between items-center text-sm text-gray-500 mb-6">
         <p>
@@ -103,7 +86,28 @@ export default async function BlogPost({ params }: Props) {
 
       {/* Render the Portable Text Body */}
       <div className="prose max-w-none">
-        <PortableText value={post.body} />
+        <PortableText
+          value={post.body}
+          components={{
+            block: {
+              h2: ({ children }) => (
+                <h2 className="text-2xl font-semibold my-4">{children}</h2>
+              ),
+              h3: ({ children }) => (
+                <h3 className="text-xl font-medium my-4">{children}</h3>
+              ),
+              normal: ({ children }) => <p className="my-2">{children}</p>,
+            },
+            list: {
+              bullet: ({ children }) => (
+                <ul className="list-disc ml-6 my-2">{children}</ul>
+              ),
+              number: ({ children }) => (
+                <ol className="list-decimal ml-6 my-2">{children}</ol>
+              ),
+            },
+          }}
+        />
       </div>
 
       <Button asChild className="mt-8">
@@ -111,11 +115,4 @@ export default async function BlogPost({ params }: Props) {
       </Button>
     </article>
   );
-}
-
-export async function generateStaticParams() {
-  const posts: Post[] = await client.fetch(`*[_type == "post"]{ slug }`);
-  return posts.map((post) => ({
-    id: post.slug.current,
-  }));
 }

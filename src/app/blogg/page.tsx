@@ -36,7 +36,7 @@ export default async function Blog() {
   const getPosts = unstable_cache(
     async () => client.fetch(postQuery),
     ["posts"],
-    { tags: ["posts"], revalidate: 60 } // Revalidate every 60 seconds as a fallback
+    { tags: ["posts"], revalidate: 60 }
   );
 
   const posts: Post[] = await getPosts();
@@ -45,21 +45,23 @@ export default async function Blog() {
   return (
     <div className="container mx-auto px-4 py-12">
       <h1 className="sr-only">Bloggside</h1>
-      {/* Display Newest Post */}
+
+      {/* Newest Post Section */}
       {newestPost && (
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-6">Siste</h2>
-          <Card className="overflow-hidden shadow-purple-500/50 shadow-lg">
-            <div className="flex flex-col">
+          <Card className="overflow-hidden shadow-lg border rounded-lg">
+            <div className="flex flex-col md:flex-row">
               {/* Main Image */}
-              <div className="w-full h-[400px] relative">
+              <div className="relative w-full md:w-1/2 h-[400px]">
                 {newestPost.mainImage ? (
                   <Image
                     src={newestPost.mainImage.asset.url}
                     alt={newestPost.mainImage.alt || newestPost.title}
-                    width={1200}
-                    height={630}
-                    className="w-full h-full rounded-b-lg"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                    style={{ objectPosition: "center top" }} // Focus on the top center
                   />
                 ) : (
                   <div className="w-full h-full bg-gray-200 flex items-center justify-center">
@@ -68,23 +70,7 @@ export default async function Blog() {
                 )}
               </div>
 
-              {/* Display Gallery Images in a Grid */}
-              {newestPost.gallery && newestPost.gallery.length > 0 && (
-                <div className="grid grid-cols-3 gap-2 p-4">
-                  {newestPost.gallery.map((image) => (
-                    <div key={image.asset._id} className="relative h-32 w-auto">
-                      <Image
-                        src={image.asset.url}
-                        alt={image.alt || `Gallery image`}
-                        fill
-                        className="rounded-lg"
-                      />
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              <div className="p-6 flex flex-col justify-between">
+              <div className="p-6 flex flex-col justify-between md:w-1/2">
                 <CardHeader>
                   <CardTitle className="text-3xl mb-4">
                     {newestPost.title}
@@ -109,13 +95,12 @@ export default async function Blog() {
                       </p>
                     )}
                   </div>
+                  {newestPost.excerpt && (
+                    <p className="mb-4">{newestPost.excerpt}</p>
+                  )}
                 </CardContent>
                 <CardFooter>
-                  <Button
-                    asChild
-                    variant="outline"
-                    className="w-full shadow-sm shadow-black/50 hover:shadow-lg"
-                  >
+                  <Button asChild variant="outline" className="w-full">
                     <Link href={`/blogg/${newestPost.slug.current}`}>
                       Les mer
                     </Link>
@@ -127,24 +112,27 @@ export default async function Blog() {
         </section>
       )}
 
-      {/* Display Older Posts */}
+      {/* Older Posts Section */}
       {olderPosts.length > 0 && (
         <section>
           <h2 className="text-2xl font-semibold mb-6">Eldre Innlegg</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {olderPosts.map((post) => (
               <Card
                 key={post._id}
-                className="flex flex-col overflow-hidden shadow-purple-800/50 shadow-lg"
+                className="flex flex-col overflow-hidden shadow-lg border rounded-lg"
               >
-                <div className="relative h-48">
+                <div className="relative h-64">
+                  {" "}
+                  {/* Increased height for better image display */}
                   {post.mainImage ? (
                     <Image
                       src={post.mainImage.asset.url}
                       alt={post.mainImage.alt || post.title}
-                      layout="fill"
-                      objectFit="cover"
-                      className="rounded-b-lg"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover"
+                      style={{ objectPosition: "center" }}
                     />
                   ) : (
                     <div className="w-full h-full bg-gray-200 flex items-center justify-center">
@@ -153,31 +141,11 @@ export default async function Blog() {
                   )}
                 </div>
 
-                {/* Display Gallery for Older Posts */}
-                {post.gallery && post.gallery.length > 0 && (
-                  <div className="grid grid-cols-3 gap-2 p-4">
-                    {post.gallery.map((image) => (
-                      <div
-                        key={image.asset._id}
-                        className="relative h-32 w-full"
-                      >
-                        <Image
-                          src={image.asset.url}
-                          alt={image.alt || `Gallery image`}
-                          layout="fill"
-                          objectFit="cover"
-                          className="rounded-lg"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                <CardHeader>
+                <CardHeader className="p-4">
                   <CardTitle className="text-xl">{post.title}</CardTitle>
                 </CardHeader>
-                <CardContent className="flex-grow">
-                  <div className="text-sm text-gray-500">
+                <CardContent className="p-4">
+                  <div className="text-sm text-gray-500 mb-4">
                     <p>
                       <strong>Av:</strong> {post.author}
                     </p>
@@ -195,13 +163,10 @@ export default async function Blog() {
                       </p>
                     )}
                   </div>
+                  {post.excerpt && <p>{post.excerpt}</p>}
                 </CardContent>
-                <CardFooter>
-                  <Button
-                    asChild
-                    variant="outline"
-                    className="w-full shadow-sm shadow-black/50 hover:shadow-lg"
-                  >
+                <CardFooter className="p-4">
+                  <Button asChild variant="outline" className="w-full">
                     <Link href={`/blogg/${post.slug.current}`}>Les mer</Link>
                   </Button>
                 </CardFooter>

@@ -2,7 +2,12 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, X } from "lucide-react";
 
@@ -40,6 +45,8 @@ const ShadcnCarousel: React.FC<ShadcnCarouselProps> = ({
           <Button onClick={() => setOpen(true)}>Åpne Galleri</Button>
         </DialogTrigger>
         <DialogContent className="p-0 px-2 bg-black rounded-lg">
+          <DialogTitle>Image Gallery</DialogTitle>
+
           <div className="flex justify-between items-center p-2 bg-black rounded-lg">
             <Button variant="ghost" onClick={() => setOpen(false)}>
               <X className="w-6 h-6 text-white" />

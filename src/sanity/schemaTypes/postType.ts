@@ -38,20 +38,6 @@ export const postType = defineType({
       ],
     }),
     defineField({
-      name: "categories",
-      type: "array",
-      of: [defineArrayMember({ type: "reference", to: { type: "category" } })],
-    }),
-    defineField({
-      name: "publishedAt",
-      type: "datetime",
-    }),
-    defineField({
-      name: "body",
-      type: "blockContent",
-    }),
-    // Add the gallery field here
-    defineField({
       name: "gallery",
       title: "Image Gallery",
       type: "array",
@@ -72,8 +58,29 @@ export const postType = defineType({
         }),
       ],
       options: {
-        layout: "grid", // Optional: Show the images in a grid layout in the Studio
+        layout: "grid",
       },
+    }),
+    defineField({
+      name: "categories",
+      type: "array",
+      of: [defineArrayMember({ type: "reference", to: { type: "category" } })],
+    }),
+    defineField({
+      name: "publishedAt",
+      type: "datetime",
+    }),
+    defineField({
+      name: "excerpt",
+      title: "Excerpt",
+      type: "text",
+      description: "A short summary of the post for previews.",
+      validation: (Rule) =>
+        Rule.max(200).warning("Keep the excerpt under 200 characters."),
+    }),
+    defineField({
+      name: "body",
+      type: "blockContent",
     }),
   ],
   preview: {
