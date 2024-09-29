@@ -1,7 +1,7 @@
 export default function SponsorPage() {
   return (
     <div className="container mx-auto py-12">
-      <h1 className="text-3xl font-bold mb-6">
+      <h1 className="text-xl sm:text-2xl font-bold mb-6">
         Sponsorpakker hos Haugesund Karateklubb
       </h1>
       <p className="py-4">
@@ -19,10 +19,10 @@ export default function SponsorPage() {
         delta og oppleve gleden ved å konkurrere i et trygt og støttende miljø.
       </p>
 
-      <h2 className="text-2xl font-bold py-4">Våre Sponsorpakker</h2>
+      <h2 className="text-xl sm:text-2xl font-bold py-4">Våre Sponsorpakker</h2>
 
       <div className="p-6">
-        <h3 className="text-xl font-bold">Ippon-pakken</h3>
+        <h3 className="text-xl sm:text-2xl font-bold">Ippon-pakken</h3>
         <p className="p-2">Kr 30 000 eller tilsvarende</p>
         <ul className="list-disc pl-6">
           <li>Logo på fasadeskilt til dojo</li>
@@ -34,7 +34,7 @@ export default function SponsorPage() {
       </div>
 
       <div className="p-6">
-        <h3 className="text-xl font-bold">Waza-ari-pakken</h3>
+        <h3 className="text-xl sm:text-2xl font-bold">Waza-ari-pakken</h3>
         <p className="p-2">Kr 10 000 eller tilsvarende</p>
         <ul className="list-disc pl-6">
           <li>Reklamebanner i dojo (mindre banner)</li>
@@ -44,7 +44,7 @@ export default function SponsorPage() {
       </div>
 
       <div className="py-6">
-        <h3 className="text-xl font-bold">Yuko-pakken</h3>
+        <h3 className="text-xl sm:text-2xl font-bold">Yuko-pakken</h3>
         <p className="p-2">Kr 5 000 eller tilsvarende</p>
         <ul className="list-disc pl-6">
           <li>Reklamebanner i dojo</li>
@@ -52,7 +52,9 @@ export default function SponsorPage() {
         </ul>
       </div>
 
-      <h2 className="text-2xl font-bold py-4">Tilpasset Sponsoravtale</h2>
+      <h2 className="text-xl sm:text-2xl font-bold py-4">
+        Tilpasset Sponsoravtale
+      </h2>
       <p className="py-4">
         Vi forstår at ulike bedrifter har ulike behov og ønsker, og vi er derfor
         åpne for å skreddersy en sponsorpakke som passer best for deg. Dette kan
@@ -68,7 +70,7 @@ export default function SponsorPage() {
         opplever glede, fellesskap og mestring uavhengig av nivå eller bakgrunn.
       </p>
 
-      <h2 className="text-2xl font-bold py-4">Kontakt oss</h2>
+      <h2 className="text-xl sm:text-2xl font-bold py-4">Kontakt oss</h2>
       <p className="py-4">
         For mer informasjon eller for å diskutere en tilpasset sponsoravtale,
         kontakt oss på e-post

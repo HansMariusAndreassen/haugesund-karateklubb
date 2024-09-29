@@ -59,7 +59,7 @@ export default async function BlogPost({ params }: Props) {
         <Link href="/blogg">← Tilbake til alle innlegg</Link>
       </Button>
 
-      <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
+      <h1 className="text-xl sm:text-2xl font-bold mb-4">{post.title}</h1>
 
       {/* Use the ImageGallery client component */}
       <ImageGallery images={galleryImages} title={post.title} />

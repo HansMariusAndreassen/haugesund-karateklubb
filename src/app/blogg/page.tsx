@@ -36,20 +36,20 @@ export default async function Blog() {
   const getPosts = unstable_cache(
     async () => client.fetch(postQuery),
     ["posts"],
-    { tags: ["posts"], revalidate: 60 }
+    { tags: ["posts"], revalidate: 1 }
   );
 
   const posts: Post[] = await getPosts();
   const [newestPost, ...olderPosts] = posts;
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="mx-auto px-4 py-12">
       <h1 className="sr-only">Bloggside</h1>
 
       {/* Newest Post Section */}
       {newestPost && (
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-6">Siste</h2>
+          <h2 className="text-xl sm:text-2xl font-semibold mb-6">Siste</h2>
           <Card className="overflow-hidden shadow-lg border rounded-lg">
             <div className="flex flex-col md:flex-row">
               {/* Main Image */}
@@ -70,9 +70,9 @@ export default async function Blog() {
                 )}
               </div>
 
-              <div className="p-6 flex flex-col justify-between md:w-1/2">
+              <div className="py-6 flex flex-col justify-between md:w-1/2">
                 <CardHeader>
-                  <CardTitle className="text-3xl mb-4">
+                  <CardTitle className="text-xl sm:text-2xl mb-4">
                     {newestPost.title}
                   </CardTitle>
                 </CardHeader>
@@ -115,7 +115,9 @@ export default async function Blog() {
       {/* Older Posts Section */}
       {olderPosts.length > 0 && (
         <section>
-          <h2 className="text-2xl font-semibold mb-6">Eldre Innlegg</h2>
+          <h2 className="text-xl sm:text-2xl font-semibold mb-6">
+            Eldre Innlegg
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {olderPosts.map((post) => (
               <Card
@@ -123,8 +125,6 @@ export default async function Blog() {
                 className="flex flex-col overflow-hidden shadow-lg border rounded-lg"
               >
                 <div className="relative h-64">
-                  {" "}
-                  {/* Increased height for better image display */}
                   {post.mainImage ? (
                     <Image
                       src={post.mainImage.asset.url}
@@ -142,7 +142,9 @@ export default async function Blog() {
                 </div>
 
                 <CardHeader className="p-4">
-                  <CardTitle className="text-xl">{post.title}</CardTitle>
+                  <CardTitle className="text-lg sm:text-xl">
+                    {post.title}
+                  </CardTitle>
                 </CardHeader>
                 <CardContent className="p-4">
                   <div className="text-sm text-gray-500 mb-4">
