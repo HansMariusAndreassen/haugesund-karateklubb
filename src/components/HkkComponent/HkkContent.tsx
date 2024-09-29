@@ -51,22 +51,22 @@ export default function HkkContent() {
           </Link>
         </Button>
       </section>
-      <section id="sponsorer" className="py-12 container">
+      <section id="sponsorer" className="py-12">
         <h2 className="text-xl sm:text-2xl font-bold mb-4">Våre sponsorer</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           <Image
             src="/sponsors/ragn-sells-logo-web-2020.svg"
             alt="Sponsor 1"
-            width={200}
-            height={100}
-            className="rounded"
+            width={238}
+            height={68}
+            style={{ width: "100%", height: "auto", maxWidth: "240px" }}
           />
           <Image
             src="/sponsors/logo_haugesund-sparebank.svg"
             alt="Sponsor 2"
-            width={200}
-            height={100}
-            className="rounded"
+            width={238}
+            height={68}
+            style={{ width: "100%", height: "auto", maxWidth: "240px" }}
           />
         </div>
       </section>
