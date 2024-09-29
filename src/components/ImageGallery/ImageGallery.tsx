@@ -5,6 +5,7 @@ import Image from "next/image";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"; // Using shadcn/ui components
@@ -71,7 +72,10 @@ export const ImageGallery = ({ images, title }: ImageGalleryProps) => {
 
       {/* Dialog Modal for Enlarged Image */}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="max-w-4xl bg-white p-6">
+        <DialogContent className="max-w-xl p-8 max-h-screen bg-white">
+          <DialogDescription className="sr-only">
+            {images[currentIndex].alt}
+          </DialogDescription>
           <DialogHeader>
             <DialogTitle>{title}</DialogTitle>
           </DialogHeader>

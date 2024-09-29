@@ -1,5 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -43,11 +49,15 @@ export const Header = ({ isOpen, setIsOpen, navItems }: HeaderProps) => {
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild>
             <Button variant="outline" size="icon" className="md:hidden">
-              <Menu className="h-6 w-6" />
+              <Menu className="h-8 w-8" />
               <span className="sr-only">Åpne meny</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className=" z-[999]">
+          <SheetContent side="right" className="z-[999]">
+            <SheetTitle>Haugesund Karateklubb</SheetTitle>
+            <SheetDescription className="sr-only">
+              Navigasjonsmeny for Haugesund Karateklubb
+            </SheetDescription>
             <nav className="flex flex-col space-y-4 mt-6">
               {navItems.map((item) => (
                 <Link
