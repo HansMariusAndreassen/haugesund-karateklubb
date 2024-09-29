@@ -17,10 +17,12 @@ export default function HkkContent() {
             både barn og voksne i våre flotte lokaler på Røldalvegen 6,
             Haugesund.
           </p>
-          Her har vi to store treningsområder, perfekte for allsidig trening,
-          med plass til alle nivåer. Hos oss kan du trene ulike disipliner som
-          Kali, Dento Ryu karate, Goshin Jujutsu (selvforsvar), tradisjonell
-          Shotokan karate og sportskarate under WKF-regelverket.
+          <p className="text-lg text-gray-700">
+            Her har vi to store treningsområder, perfekte for allsidig trening,
+            med plass til alle nivåer. Hos oss kan du trene ulike disipliner som
+            Kali, Dento Ryu karate, Goshin Jujutsu (selvforsvar), tradisjonell
+            Shotokan karate og sportskarate under WKF-regelverket.
+          </p>
           <p className="text-lg text-gray-700">
             Vi har tilpassede ettermiddagstreninger i vår dojo for alle
             ferdighetsnivåer, og vi arrangerer nybegynnertreninger på skoler i

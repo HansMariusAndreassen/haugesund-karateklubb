@@ -6,6 +6,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ImageGallery } from "@/components/ImageGallery/ImageGallery";
 import { TypedObject } from "sanity";
+import { unstable_cache } from "next/cache";
 
 interface ImageType {
   asset: {
@@ -32,15 +33,18 @@ interface Props {
 }
 
 export default async function BlogPost({ params }: Props) {
-  const post: Post | null = await client.fetch(singlePostQuery, {
-    slug: params.id,
-  });
+  const getPost = unstable_cache(
+    async () => client.fetch(singlePostQuery, { slug: params.id }),
+    ["post", params.id],
+    { tags: ["posts"], revalidate: 1 }
+  );
+
+  const post: Post | null = await getPost();
 
   if (!post) {
     notFound();
   }
 
-  // Prepare gallery images data
   const galleryImages = [
     ...(post.mainImage
       ? [{ src: post.mainImage.asset.url, alt: post.mainImage.alt || "" }]
@@ -58,12 +62,8 @@ export default async function BlogPost({ params }: Props) {
       <Button asChild className="mb-6">
         <Link href="/blogg">← Tilbake til alle innlegg</Link>
       </Button>
-
       <h1 className="text-xl sm:text-2xl font-bold mb-4">{post.title}</h1>
-
-      {/* Use the ImageGallery client component */}
       <ImageGallery images={galleryImages} title={post.title} />
-
       <div className="flex justify-between items-center text-sm text-gray-500 mb-6">
         <p>
           <strong>Av:</strong> {post.author}
@@ -79,12 +79,6 @@ export default async function BlogPost({ params }: Props) {
           </p>
         )}
       </div>
-
-      {post.excerpt && (
-        <p className="text-xl text-gray-600 mb-6">{post.excerpt}</p>
-      )}
-
-      {/* Render the Portable Text Body */}
       <div className="prose max-w-none">
         <PortableText
           value={post.body}
