@@ -24,11 +24,11 @@ export default function Classes() {
   });
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h2 className="text-3xl font-bold mb-6 text-center">
-        Timeplan Haugesund Karateklubb
+    <div className="mx-auto px-4 py-8">
+      <h2 className="text-xl sm:text-3xl font-bold mb-6 text-center">
+        Timeplan i Dojo
       </h2>{" "}
-      <p className="text-sm text-gray-600 pb-8 container">
+      <p className="text-sm text-gray-600 pb-8">
         Vennligst merk at dersom du er nybegynner og ikke har anledning til å
         delta på de dagene hvor nybegynnerklasser er satt opp, er du velkommen
         til å delta på en annen dag som passer deg bedre.
@@ -39,7 +39,7 @@ export default function Classes() {
             <TabsTrigger
               key={day.day}
               value={day.day}
-              className="text-sm sm:text-base"
+              className="text-sm sm:text-base shadow-md bg-purple-200"
             >
               {day.day}
             </TabsTrigger>

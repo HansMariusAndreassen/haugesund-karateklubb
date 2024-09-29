@@ -4,9 +4,9 @@ export const Footer = () => {
   return (
     <footer className="bg-gray-800 text-white">
       <div className="container mx-auto px-4 py-8">
-        <div className="flex flex-col md:flex-row justify-between items-center">
+        <div className="flex justify-between items-center">
           <div className="mb-4 md:mb-0">
-            <h3 className="text-xl font-bold mb-2">Haugesund Karateklubb</h3>
+            <h3 className="sm:text-xl font-bold mb-2">Haugesund Karateklubb</h3>
             <p>Røldalvegen 6, 5521 Haugesund</p>
           </div>
           <div className="flex space-x-4">
@@ -31,7 +31,7 @@ export const Footer = () => {
             </a>
           </div>
         </div>
-        <div className="mt-8 text-center">
+        <div className="text-sm pt-6 text-center text-muted-foreground">
           <p>
             &copy; {new Date().getFullYear()} Haugesund Karateklubb. Alle
             rettigheter forbeholdt.

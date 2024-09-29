@@ -34,6 +34,7 @@ const navItems = [
   { href: "/treningstilbud", label: "Treningstilbud" },
   { href: "/medlem", label: "Bli medlem" },
   { href: "/sponsor", label: "Sponsor" },
+  { href: "/blogg", label: "Blogg" },
 ];
 
 export default function RootLayout({
@@ -43,10 +44,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="no">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </head>
       <body className={inter.className}>
         <div className="bg-image"></div>
         <HeaderWrapper navItems={navItems} />
-        <main className="flex-grow container mx-auto px-4 py-8">
+        <main className="flex-grow container mx-auto px-4 py-8 min-h-screen">
           {children}
         </main>
         <Footer />

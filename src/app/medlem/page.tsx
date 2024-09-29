@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function MemberPage() {
   return (
     <div className="container mx-auto py-12">
-      <h1 className="text-2xl font-bold py-6">
+      <h1 className="text-xl sm:text-2xl font-bold py-6">
         Bli Medlem i Haugesund Karateklubb
       </h1>
       <p className="py-4">
@@ -25,7 +25,9 @@ export default function MemberPage() {
         oppdateringer om treningsaktiviteter. Last ned Spond her for å holde
         oversikt over betalinger og treninger.
       </p>
-      <h2 className="text-2xl font-bold py-4">Medlemskap og Avgifter</h2>
+      <h2 className="text-xl sm:text-2xl font-bold py-4">
+        Medlemskap og Avgifter
+      </h2>
       <p className="py-4">
         Medlemskontingenten er satt til 100 kr + omkostninger. Treningsavgiften
         er 3360 kr for 12 måneder + omkostninger, og det er mulighet for
@@ -37,7 +39,9 @@ export default function MemberPage() {
         dekker innmelding i NIF, Kampsportforbundet, nødvendige forsikringer og
         gir stemmerett ved årsmøter.
       </p>
-      <h2 className="text-2xl font-bold py-4">Tilbud om Betalingsfritak</h2>
+      <h2 className="text-xl sm:text-2xl font-bold py-4">
+        Tilbud om Betalingsfritak
+      </h2>
       <p className="py-4">
         Vi er en <strong>{`"Alle med"`}</strong>-klubb, og ingen skal holdes
         tilbake fra å trene hos oss på grunn av økonomiske årsaker. Det er mulig

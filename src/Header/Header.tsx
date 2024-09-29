@@ -1,8 +1,14 @@
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 
 type HeaderProps = {
   isOpen: boolean;
@@ -15,8 +21,14 @@ export const Header = ({ isOpen, setIsOpen, navItems }: HeaderProps) => {
     <header className="bg-white shadow-sm">
       <div className="mx-auto px-4 py-2 flex justify-between items-center">
         <a href="/" className="flex items-center gap-2">
-          <Image src="/karateklubblogo.svg" alt="Logo" width={40} height={40} />
-          <h1 className="text-2xl font-bold text-gray-800">
+          <Image
+            src={"/karateklubblogo.svg"}
+            alt="Karate Klubb Logo"
+            width={100}
+            height={141}
+            style={{ width: "100%", height: "auto", maxWidth: "40px" }}
+          />
+          <h1 className="text-lg sm:text-2xl font-bold text-gray-800">
             Haugesund Karateklubb
           </h1>
         </a>
@@ -37,11 +49,15 @@ export const Header = ({ isOpen, setIsOpen, navItems }: HeaderProps) => {
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild>
             <Button variant="outline" size="icon" className="md:hidden">
-              <Menu className="h-6 w-6" />
+              <Menu className="h-8 w-8" />
               <span className="sr-only">Åpne meny</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right">
+          <SheetContent side="right" className="z-[999]">
+            <SheetTitle>Haugesund Karateklubb</SheetTitle>
+            <SheetDescription className="sr-only">
+              Navigasjonsmeny for Haugesund Karateklubb
+            </SheetDescription>
             <nav className="flex flex-col space-y-4 mt-6">
               {navItems.map((item) => (
                 <Link
@@ -54,6 +70,15 @@ export const Header = ({ isOpen, setIsOpen, navItems }: HeaderProps) => {
                 </Link>
               ))}
             </nav>
+            <div className="flex justify-center items-center min-h-screen">
+              <Image
+                src="/karateklubblogo.svg"
+                alt="Karate Klubb Logo"
+                width={100}
+                height={141}
+                style={{ width: "100%", height: "auto", maxWidth: "240px" }}
+              />
+            </div>
           </SheetContent>
         </Sheet>
       </div>
