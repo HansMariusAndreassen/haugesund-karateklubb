@@ -6,42 +6,45 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { scheduleData } from "./scheduleData";
 
 const days = [
-  "Søndag",
-  "Mandag",
-  "Tirsdag",
-  "Onsdag",
-  "Torsdag",
-  "Fredag",
-  "Lørdag",
+  { full: "Søndag", abbr: "Søn" },
+  { full: "Mandag", abbr: "Man" },
+  { full: "Tirsdag", abbr: "Tir" },
+  { full: "Onsdag", abbr: "Ons" },
+  { full: "Torsdag", abbr: "Tor" },
+  { full: "Fredag", abbr: "Fre" },
+  { full: "Lørdag", abbr: "Lør" },
 ];
 
 export default function Classes() {
   const [currentDay, setCurrentDay] = useState(() => {
     const today = new Date().getDay();
-    return days[today] === "Lørdag" || days[today] === "Søndag"
+    return days[today].full === "Lørdag" || days[today].full === "Søndag"
       ? "Mandag"
-      : days[today];
+      : days[today].full;
   });
 
   return (
     <div className="mx-auto px-4 py-8">
       <h2 className="text-xl sm:text-3xl font-bold mb-6 text-center">
         Timeplan i Dojo
-      </h2>{" "}
+      </h2>
       <p className="text-sm text-gray-600 pb-8">
         Vennligst merk at dersom du er nybegynner og ikke har anledning til å
         delta på de dagene hvor nybegynnerklasser er satt opp, er du velkommen
         til å delta på en annen dag som passer deg bedre.
       </p>
       <Tabs value={currentDay} onValueChange={setCurrentDay} className="w-full">
-        <TabsList className="grid w-full grid-cols-5 mb-8 ">
+        <TabsList className="grid w-full grid-cols-5 mb-8">
           {scheduleData.map((day) => (
             <TabsTrigger
               key={day.day}
               value={day.day}
               className="text-sm sm:text-base shadow-md bg-purple-200"
             >
-              {day.day}
+              <span className="hidden sm:inline">{day.day}</span>
+              <span className="sm:hidden">
+                {days.find((d) => d.full === day.day)?.abbr}
+              </span>
             </TabsTrigger>
           ))}
         </TabsList>
