@@ -46,7 +46,6 @@ export default async function Blog() {
     <div className="mx-auto px-4 py-12">
       <h1 className="sr-only">Bloggside</h1>
 
-      {/* Newest Post Section */}
       {newestPost && (
         <section className="mb-12">
           <h2 className="text-xl sm:text-2xl font-semibold mb-6">Siste</h2>
@@ -112,7 +111,6 @@ export default async function Blog() {
         </section>
       )}
 
-      {/* Older Posts Section */}
       {olderPosts.length > 0 && (
         <section>
           <h2 className="text-xl sm:text-2xl font-semibold mb-6">

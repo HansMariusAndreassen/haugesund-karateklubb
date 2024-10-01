@@ -4,7 +4,7 @@ import { classInfo } from "./classInfo";
 
 export default function ClassesPage() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-6">
+    <div className="flex-grow mx-auto px-2 py-8">
       <h1 className="text-2xl sm:text-3xl font-bold mb-6">
         Våre Treningstilbud
       </h1>
