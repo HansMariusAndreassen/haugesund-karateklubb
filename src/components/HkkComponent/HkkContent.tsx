@@ -6,9 +6,9 @@ import { SpondInfo } from "../Spond/SpondInfo";
 
 export default function HkkContent() {
   return (
-    <div className="flex-grow mx-auto px-2 py-8">
+    <div className="container mx-auto py-8">
       <section className="mb-12">
-        <h2 className="text-2xl sm:text-4xl font-bold mb-4 text-center py-8">
+        <h2 className="text-2xl sm:text-4xl font-bold mb-4 text-center">
           Velkommen til Haugesund Karateklubb
         </h2>
         <div className="flex flex-col gap-4">
