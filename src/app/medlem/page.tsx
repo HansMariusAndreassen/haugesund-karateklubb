@@ -3,8 +3,8 @@ import Link from "next/link";
 
 export default function MemberPage() {
   return (
-    <div className="container mx-auto py-12">
-      <h1 className="text-xl sm:text-2xl font-bold py-6">
+    <div className="container mx-auto py-8">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-6">
         Bli Medlem i Haugesund Karateklubb
       </h1>
       <p className="py-4">
@@ -22,8 +22,14 @@ export default function MemberPage() {
       </p>
       <p className="py-4">
         Vi benytter Spond som medlemssystem for fakturering, informasjon og
-        oppdateringer om treningsaktiviteter. Last ned Spond her for å holde
-        oversikt over betalinger og treninger.
+        oppdateringer om treningsaktiviteter.{" "}
+        <Link
+          href="https://club.spond.com/landing/signup/haugesundkk/form/7F473E78E278414F9E6931F233F98141"
+          className="underline"
+        >
+          Last ned Spond
+        </Link>{" "}
+        for å holde oversikt over betalinger og treninger.
       </p>
       <h2 className="text-xl sm:text-2xl font-bold py-4">
         Medlemskap og Avgifter

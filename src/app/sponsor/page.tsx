@@ -1,7 +1,7 @@
 export default function SponsorPage() {
   return (
-    <div className="container mx-auto py-12">
-      <h1 className="text-xl sm:text-2xl font-bold mb-6">
+    <div className="container mx-auto py-8">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-6">
         Sponsorpakker hos Haugesund Karateklubb
       </h1>
       <p className="py-4">
