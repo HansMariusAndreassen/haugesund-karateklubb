@@ -6,7 +6,7 @@ import { SpondInfo } from "../Spond/SpondInfo";
 
 export default function HkkContent() {
   return (
-    <div className="container mx-auto py-8">
+    <div className="mx-auto px-2 py-8">
       <section className="mb-12">
         <h2 className="text-2xl sm:text-4xl font-bold mb-4 text-center">
           Velkommen til Haugesund Karateklubb
@@ -38,8 +38,10 @@ export default function HkkContent() {
           </p>
         </div>
       </section>
-      <Classes />
-      <SpondInfo />
+      <section>
+        <Classes />
+        <SpondInfo />
+      </section>
       <section id="bli-medlem" className="py-12">
         <h2 className="text-xl sm:text-2xl font-bold mb-4">Bli medlem</h2>
         <p className="mb-4">

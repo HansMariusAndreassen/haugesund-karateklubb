@@ -1,6 +1,6 @@
 export const SpondInfo = () => {
   return (
-    <div className="container mx-auto p-6">
+    <div className="mx-auto py-6">
       <h2 className="text-2xl font-bold mb-4">
         Vi bruker Spond som medlemssystem
       </h2>
