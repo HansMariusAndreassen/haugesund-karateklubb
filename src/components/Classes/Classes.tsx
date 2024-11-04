@@ -1,9 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { scheduleData } from "./scheduleData";
+import { client } from "@/sanity/lib/client"; // Juster import-stien basert på din prosjektstruktur
+import { scheduleQuery } from "@/sanity/lib/queries";
+
+// Types for Sanity data
+type Class = {
+  startTime: string;
+  endTime: string;
+  name: string;
+  room: string;
+  color: string;
+  group: string;
+};
+
+type DaySchedule = {
+  _id: string;
+  day: string;
+  classes: Class[];
+};
 
 const days = [
   { full: "Søndag", abbr: "Søn" },
@@ -16,6 +33,20 @@ const days = [
 ];
 
 export default function Classes() {
+  const [scheduleData, setScheduleData] = useState<DaySchedule[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const data: DaySchedule[] = await client.fetch(scheduleQuery);
+      setScheduleData(data);
+    }
+    fetchData();
+  }, []);
+
+  return <ClassesClient scheduleData={scheduleData} />;
+}
+
+function ClassesClient({ scheduleData }: { scheduleData: DaySchedule[] }) {
   const [currentDay, setCurrentDay] = useState(() => {
     const today = new Date().getDay();
     return days[today].full === "Lørdag" || days[today].full === "Søndag"
@@ -57,9 +88,14 @@ export default function Classes() {
                   className={`${class_.color} text-white shadow-lg hover:shadow-xl transition-shadow duration-300`}
                 >
                   <CardContent className="p-4">
-                    <div className="font-bold text-lg mb-2">{class_.time}</div>
-                    <div className="font-medium mb-1">{class_.name}</div>
-                    <div className="text-sm opacity-75">{class_.room}</div>
+                    <div className="font-bold text-lg mb-2">
+                      {class_.startTime}-{class_.endTime}
+                    </div>
+                    <div className="font-medium mb-1 uppercase">
+                      {class_.name}
+                    </div>
+                    <div className="text-sm">{class_.group}</div>
+                    <div className="text-sm pt-2">{class_.room}</div>
                   </CardContent>
                 </Card>
               ))}
