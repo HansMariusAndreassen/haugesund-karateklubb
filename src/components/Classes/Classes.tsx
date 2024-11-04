@@ -14,6 +14,7 @@ type Class = {
   room: string;
   color: string;
   group: string;
+  age: string;
 };
 
 type DaySchedule = {
@@ -38,7 +39,26 @@ export default function Classes() {
   useEffect(() => {
     async function fetchData() {
       const data: DaySchedule[] = await client.fetch(scheduleQuery);
-      setScheduleData(data);
+
+      // Define the order for sorting
+      const dayOrder = {
+        Søndag: 0,
+        Mandag: 1,
+        Tirsdag: 2,
+        Onsdag: 3,
+        Torsdag: 4,
+        Fredag: 5,
+      };
+
+      // Sort the data based on the day order
+      const sortedData = data.sort((a, b) => {
+        return (
+          (dayOrder[a.day as keyof typeof dayOrder] || 7) -
+          (dayOrder[b.day as keyof typeof dayOrder] || 7)
+        );
+      });
+
+      setScheduleData(sortedData);
     }
     fetchData();
   }, []);
@@ -60,9 +80,10 @@ function ClassesClient({ scheduleData }: { scheduleData: DaySchedule[] }) {
         Timeplan i Dojo
       </h2>
       <p className="text-sm text-gray-600 pb-8">
-        Vennligst merk at dersom du er nybegynner og ikke har anledning til å
-        delta på de dagene hvor nybegynnerklasser er satt opp, er du velkommen
-        til å delta på en annen dag som passer deg bedre.
+        Vennligst merk at aldersgrensene er ment for erfaringsnivå, og ikke for
+        å begrense hvem som har lov til å delta. Dersom du er nybegynner og ikke
+        har anledning til å delta på de dagene hvor nybegynnerklasser er satt
+        opp, er du velkommen til å delta på en annen dag som passer deg bedre.
       </p>
       <Tabs value={currentDay} onValueChange={setCurrentDay} className="w-full">
         <TabsList className="grid w-full grid-cols-5 mb-8">
@@ -88,13 +109,22 @@ function ClassesClient({ scheduleData }: { scheduleData: DaySchedule[] }) {
                   className={`${class_.color} text-white shadow-lg hover:shadow-xl transition-shadow duration-300`}
                 >
                   <CardContent className="p-4">
-                    <div className="font-bold text-lg mb-2">
-                      {class_.startTime}-{class_.endTime}
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="font-bold text-lg">
+                        {class_.startTime}-{class_.endTime}
+                      </div>
+                      {class_.age && (
+                        <div className="text-sm text-gray-800 rounded-xl p-1 bg-white">
+                          {class_.age}
+                        </div>
+                      )}
                     </div>
-                    <div className="font-medium mb-1 uppercase">
-                      {class_.name}
+                    <div className="flex items-center gap-3">
+                      <div className="font-medium text-lg uppercase">
+                        {class_.name}
+                      </div>
+                      <div className="text-sm">{class_.group}</div>
                     </div>
-                    <div className="text-sm">{class_.group}</div>
                     <div className="text-sm pt-2">{class_.room}</div>
                   </CardContent>
                 </Card>

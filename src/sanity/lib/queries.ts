@@ -38,7 +38,8 @@ export const scheduleQuery = groq`
       name,
       group,
       room,
-      color
+      color,
+      age
     }
   }
 `;

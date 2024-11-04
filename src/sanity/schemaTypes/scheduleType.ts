@@ -10,6 +10,7 @@ export const scheduleType = defineType({
     defineField({
       name: "day",
       title: "Dag",
+      initialValue: "Mandag",
       type: "string",
       options: {
         list: [
@@ -80,13 +81,13 @@ export const scheduleType = defineType({
               validation: (Rule) => Rule.required(),
               options: {
                 list: [
-                  { title: "KATA", value: "kata" },
-                  { title: "KUMITE", value: "kumite" },
-                  { title: "WKF KUMITE", value: "wkf-kumite" },
-                  { title: "FLEKSIBLE STEEL", value: "fleksible-steel" },
-                  { title: "KARATE JUJUTSU", value: "karate-jujutsu" },
-                  { title: "BASIC KATA", value: "basic-kata" },
-                  { title: "FLEKSIBLE STEEL", value: "fleksible-steel" },
+                  { title: "KATA", value: "KATA" },
+                  { title: "KUMITE", value: "KUMITE" },
+                  { title: "WKF KUMITE", value: "WKF KUMITE" },
+                  { title: "FLEKSIBLE STEEL", value: "FLEKSIBLE STEEL" },
+                  { title: "KARATE JUJUTSU", value: "KARATE JUJUTSU" },
+                  { title: "KALI", value: "KALI" },
+                  { title: "FIT2FIGHT", value: "FIT2FIGHT" },
                 ],
               },
             }),
@@ -113,17 +114,43 @@ export const scheduleType = defineType({
                   },
                   { title: "Mellomparti", value: "Mellomparti" },
                   { title: "Svart belte", value: "Svart belte" },
+                  { title: "Konkurranseparti", value: "Konkurranseparti" },
                   {
-                    title: "Viderekommende 14 år+",
-                    value: "Viderekommende 14 år+",
+                    title: "Konkurranseparti-nybegynner",
+                    value: "Konkurranseparti-nybegynner",
                   },
                   {
-                    title: "Viderekommende 16 år+",
-                    value: "Viderekommende 16 år+",
+                    title: "Konkurranseparti-mellomparti",
+                    value: "Konkurranseparti-mellomparti",
+                  },
+                  {
+                    title: "Konkurranseparti-svart belte",
+                    value: "Konkurranseparti-svart belte",
+                  },
+                  {
+                    title: "Viderekommende",
+                    value: "Viderekommende",
+                  },
+                  {
+                    title: "Nybegynnere",
+                    value: "Nybegynnere",
                   },
                 ],
               },
               validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: "age",
+              title: "Alder",
+              type: "string",
+              initialValue: "Alle",
+              options: {
+                list: [
+                  { title: "Alle", value: "Alle" },
+                  { title: "14 år+", value: "14 år+" },
+                  { title: "16 år+", value: "16 år+" },
+                ],
+              },
             }),
             defineField({
               name: "color",
