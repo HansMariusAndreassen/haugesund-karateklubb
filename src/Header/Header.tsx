@@ -28,7 +28,7 @@ export const Header = ({ isOpen, setIsOpen, navItems }: HeaderProps) => {
             height={141}
             style={{ width: "100%", height: "auto", maxWidth: "40px" }}
           />
-          <h1 className="text-lg sm:text-2xl font-bold text-gray-800">
+          <h1 className="text-lg sm:text-2xl font-bold text-gray-800 inline-block">
             Haugesund Karateklubb
           </h1>
         </a>
