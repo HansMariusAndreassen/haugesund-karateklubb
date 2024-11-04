@@ -43,7 +43,7 @@ export default function SponsorPage() {
         </ul>
       </div>
 
-      <div className="py-6">
+      <div className="p-6">
         <h3 className="text-xl sm:text-2xl font-bold">Yuko-pakken</h3>
         <p className="p-2">Kr 5 000 eller tilsvarende</p>
         <ul className="list-disc pl-6">
