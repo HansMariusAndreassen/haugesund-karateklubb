@@ -6,7 +6,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { client } from "@/sanity/lib/client";
 import { scheduleQuery } from "@/sanity/lib/queries";
 
-// Types for Sanity data
 type Class = {
   startTime: string;
   endTime: string;
@@ -42,7 +41,6 @@ export default function Classes() {
     async function fetchData() {
       const data: DaySchedule[] = await client.fetch(scheduleQuery);
 
-      // Create a complete schedule with all weekdays
       const completeSchedule = weekdays.map((day) => {
         const existingDay = data.find((d) => d.day === day);
         return (
@@ -87,7 +85,7 @@ function ClassesClient({ scheduleData }: { scheduleData: DaySchedule[] }) {
             <TabsTrigger
               key={day.day}
               value={day.day}
-              className="text-sm sm:text-base shadow-md bg-purple-200"
+              className="text-sm sm:text-base bg-white hover:bg-green-100 shadow-md"
             >
               <span className="hidden sm:inline">{day.day}</span>
               <span className="sm:hidden">
