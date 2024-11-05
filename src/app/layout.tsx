@@ -48,7 +48,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body className={inter.className}>
-        <div className="bg-image"></div>
+        <div className="bg-image bg-black blur-sm"></div>
         <HeaderWrapper navItems={navItems} />
         <main className="flex-grow container mx-auto px-4 min-h-screen">
           {children}
