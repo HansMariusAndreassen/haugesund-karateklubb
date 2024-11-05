@@ -19,7 +19,7 @@ export default function SponsorPage() {
         delta og oppleve gleden ved å konkurrere i et trygt og støttende miljø.
       </p>
 
-      <h2 className="text-xl sm:text-2xl font-bold py-4">Våre Sponsorpakker</h2>
+      <h2 className="text-xl sm:text-2xl font-bold pt-4">Våre Sponsorpakker</h2>
 
       <div className="p-6">
         <h3 className="text-xl sm:text-2xl font-bold">Ippon-pakken</h3>
@@ -43,7 +43,7 @@ export default function SponsorPage() {
         </ul>
       </div>
 
-      <div className="py-6">
+      <div className="p-6">
         <h3 className="text-xl sm:text-2xl font-bold">Yuko-pakken</h3>
         <p className="p-2">Kr 5 000 eller tilsvarende</p>
         <ul className="list-disc pl-6">

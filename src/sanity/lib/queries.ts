@@ -27,3 +27,32 @@ export const singlePostQuery = groq`
     "author": author->name
   }
 `;
+
+export const scheduleQuery = groq`
+  *[_type == "schedule" && !(_id in path("drafts.**"))] | order(day) {
+    _id,
+    day,
+    classes[] {
+      startTime,
+      endTime,
+      name,
+      group,
+      room,
+      color,
+      age
+    }
+  }
+`;
+
+export const dayScheduleQuery = groq`
+  *[_type == "schedule" && day == $day][0] {
+    _id,
+    day,
+    classes[] {
+      time,
+      name,
+      room,
+      color
+    }
+  }
+`;

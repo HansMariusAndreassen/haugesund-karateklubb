@@ -1,9 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { scheduleData } from "./scheduleData";
+import { client } from "@/sanity/lib/client";
+import { scheduleQuery } from "@/sanity/lib/queries";
+
+type Class = {
+  startTime: string;
+  endTime: string;
+  name: string;
+  room: string;
+  color: string;
+  group: string;
+  age: string;
+};
+
+type DaySchedule = {
+  _id: string;
+  day: string;
+  classes: Class[];
+};
 
 const days = [
   { full: "Søndag", abbr: "Søn" },
@@ -15,7 +32,35 @@ const days = [
   { full: "Lørdag", abbr: "Lør" },
 ];
 
+const weekdays = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag"];
+
 export default function Classes() {
+  const [scheduleData, setScheduleData] = useState<DaySchedule[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const data: DaySchedule[] = await client.fetch(scheduleQuery);
+
+      const completeSchedule = weekdays.map((day) => {
+        const existingDay = data.find((d) => d.day === day);
+        return (
+          existingDay || {
+            _id: `generated-${day}`,
+            day: day,
+            classes: [],
+          }
+        );
+      });
+
+      setScheduleData(completeSchedule);
+    }
+    fetchData();
+  }, []);
+
+  return <ClassesClient scheduleData={scheduleData} />;
+}
+
+function ClassesClient({ scheduleData }: { scheduleData: DaySchedule[] }) {
   const [currentDay, setCurrentDay] = useState(() => {
     const today = new Date().getDay();
     return days[today].full === "Lørdag" || days[today].full === "Søndag"
@@ -29,9 +74,10 @@ export default function Classes() {
         Timeplan i Dojo
       </h2>
       <p className="text-sm text-gray-600 pb-8">
-        Vennligst merk at dersom du er nybegynner og ikke har anledning til å
-        delta på de dagene hvor nybegynnerklasser er satt opp, er du velkommen
-        til å delta på en annen dag som passer deg bedre.
+        Vennligst merk at aldersgrensene er ment for erfaringsnivå, og ikke for
+        å begrense hvem som har lov til å delta. Dersom du er nybegynner og ikke
+        har anledning til å delta på de dagene hvor nybegynnerklasser er satt
+        opp, er du velkommen til å delta på en annen dag som passer deg bedre.
       </p>
       <Tabs value={currentDay} onValueChange={setCurrentDay} className="w-full">
         <TabsList className="grid w-full grid-cols-5 mb-8">
@@ -39,7 +85,7 @@ export default function Classes() {
             <TabsTrigger
               key={day.day}
               value={day.day}
-              className="text-sm sm:text-base shadow-md bg-purple-200"
+              className="text-sm sm:text-base bg-white hover:bg-green-100 shadow-md"
             >
               <span className="hidden sm:inline">{day.day}</span>
               <span className="sm:hidden">
@@ -50,23 +96,38 @@ export default function Classes() {
         </TabsList>
         {scheduleData.map((day) => (
           <TabsContent key={day.day} value={day.day}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {day.classes.map((class_, index) => (
-                <Card
-                  key={index}
-                  className={`${class_.color} text-white shadow-lg hover:shadow-xl transition-shadow duration-300`}
-                >
-                  <CardContent className="p-4">
-                    <div className="font-bold text-lg mb-2">{class_.time}</div>
-                    <div className="font-medium mb-1">{class_.name}</div>
-                    <div className="text-sm opacity-75">{class_.room}</div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-            {day.classes.length === 0 && (
+            {day.classes.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {day.classes.map((class_, index) => (
+                  <Card
+                    key={index}
+                    className={`${class_.color} text-white shadow-lg hover:shadow-xl transition-shadow duration-300`}
+                  >
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="font-bold text-lg">
+                          {class_.startTime}-{class_.endTime}
+                        </div>
+                        {class_.age && (
+                          <div className="inline-flex items-center px-2.5 py-1 rounded-full text-sm font-medium bg-white text-gray-800 shadow-sm border border-gray-200">
+                            {class_.age}
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <div className="font-medium text-lg uppercase">
+                          {class_.name}
+                        </div>
+                        <div className="text-sm">{class_.group}</div>
+                      </div>
+                      <div className="text-sm pt-2">{class_.room}</div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            ) : (
               <p className="text-center text-gray-500 mt-4">
-                Ingen klasser planlagt for denne dagen.
+                Ingen timer planlagt denne dagen.
               </p>
             )}
           </TabsContent>

@@ -1,5 +1,11 @@
 export const classInfo = [
   {
+    name: "Karate",
+    description:
+      "Karate er en tradisjonell kampsport som fokuserer på grunnleggende teknikker, slag, spark og blokkeringer. Timen passer for både nybegynnere og viderekomne.",
+    color: "bg-sky-400",
+  },
+  {
     name: "Kumite",
     description:
       "Kumite er kamptrening der man utvikler teknikker, hurtighet, timing og strategisk tenkning i en trygg og kontrollert setting. Timen er åpen for alle nivåer.",
@@ -9,7 +15,7 @@ export const classInfo = [
     name: "Kata",
     description:
       "Kata er en serie forhåndsbestemte bevegelser som simulerer kamp mot flere motstandere. Denne timen passer for alle som vil forbedre teknisk utførelse og balanse.",
-    color: "bg-yellow-500",
+    color: "bg-orange-400",
   },
   {
     name: "WKF Kumite",
