@@ -81,6 +81,7 @@ export const scheduleType = defineType({
               validation: (Rule) => Rule.required(),
               options: {
                 list: [
+                  { title: "KARATE", value: "KARATE" },
                   { title: "KATA", value: "KATA" },
                   { title: "KUMITE", value: "KUMITE" },
                   { title: "WKF KUMITE", value: "WKF KUMITE" },
@@ -111,6 +112,10 @@ export const scheduleType = defineType({
                   {
                     title: "Nybegynner og lavere graderte",
                     value: "Nybegynner og lavere graderte",
+                  },
+                  {
+                    title: "Nybegynner og mellomparti",
+                    value: "Nybegynner og mellomparti",
                   },
                   { title: "Mellomparti", value: "Mellomparti" },
                   { title: "Svart belte", value: "Svart belte" },
@@ -147,8 +152,8 @@ export const scheduleType = defineType({
               options: {
                 list: [
                   { title: "Alle", value: "Alle" },
-                  { title: "14 år+", value: "14 år+" },
-                  { title: "16 år+", value: "16 år+" },
+                  { title: "14+", value: "14+" },
+                  { title: "16+", value: "16+" },
                 ],
               },
             }),
@@ -158,12 +163,13 @@ export const scheduleType = defineType({
               type: "string",
               options: {
                 list: [
+                  { title: "Grønn (Karate)", value: "bg-green-400" },
                   { title: "Lilla (Kumite)", value: "bg-purple-500" },
                   { title: "Gul (Kata)", value: "bg-yellow-500" },
                   { title: "Grå (WKF Kumite)", value: "bg-gray-500" },
                   {
                     title: "Grønn (Fleksible/Fit2Fight)",
-                    value: "bg-green-500",
+                    value: "bg-green-800",
                   },
                   { title: "Turkis (Karate Jujutsu)", value: "bg-teal-400" },
                   { title: "Rosa (Kali)", value: "bg-pink-500" },

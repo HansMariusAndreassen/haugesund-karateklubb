@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { client } from "@/sanity/lib/client"; // Juster import-stien basert på din prosjektstruktur
+import { client } from "@/sanity/lib/client";
 import { scheduleQuery } from "@/sanity/lib/queries";
 
 // Types for Sanity data
@@ -33,6 +33,8 @@ const days = [
   { full: "Lørdag", abbr: "Lør" },
 ];
 
+const weekdays = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag"];
+
 export default function Classes() {
   const [scheduleData, setScheduleData] = useState<DaySchedule[]>([]);
 
@@ -40,25 +42,19 @@ export default function Classes() {
     async function fetchData() {
       const data: DaySchedule[] = await client.fetch(scheduleQuery);
 
-      // Define the order for sorting
-      const dayOrder = {
-        Søndag: 0,
-        Mandag: 1,
-        Tirsdag: 2,
-        Onsdag: 3,
-        Torsdag: 4,
-        Fredag: 5,
-      };
-
-      // Sort the data based on the day order
-      const sortedData = data.sort((a, b) => {
+      // Create a complete schedule with all weekdays
+      const completeSchedule = weekdays.map((day) => {
+        const existingDay = data.find((d) => d.day === day);
         return (
-          (dayOrder[a.day as keyof typeof dayOrder] || 7) -
-          (dayOrder[b.day as keyof typeof dayOrder] || 7)
+          existingDay || {
+            _id: `generated-${day}`,
+            day: day,
+            classes: [],
+          }
         );
       });
 
-      setScheduleData(sortedData);
+      setScheduleData(completeSchedule);
     }
     fetchData();
   }, []);
@@ -102,37 +98,38 @@ function ClassesClient({ scheduleData }: { scheduleData: DaySchedule[] }) {
         </TabsList>
         {scheduleData.map((day) => (
           <TabsContent key={day.day} value={day.day}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {day.classes.map((class_, index) => (
-                <Card
-                  key={index}
-                  className={`${class_.color} text-white shadow-lg hover:shadow-xl transition-shadow duration-300`}
-                >
-                  <CardContent className="p-4">
-                    <div className="flex items-center justify-between gap-3">
-                      <div className="font-bold text-lg">
-                        {class_.startTime}-{class_.endTime}
-                      </div>
-                      {class_.age && (
-                        <div className="text-sm text-gray-800 rounded-xl p-1 bg-white">
-                          {class_.age}
+            {day.classes.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {day.classes.map((class_, index) => (
+                  <Card
+                    key={index}
+                    className={`${class_.color} text-white shadow-lg hover:shadow-xl transition-shadow duration-300`}
+                  >
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="font-bold text-lg">
+                          {class_.startTime}-{class_.endTime}
                         </div>
-                      )}
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="font-medium text-lg uppercase">
-                        {class_.name}
+                        {class_.age && (
+                          <div className="text-sm text-gray-800 rounded-xl p-1 bg-white shadow-md">
+                            {class_.age}
+                          </div>
+                        )}
                       </div>
-                      <div className="text-sm">{class_.group}</div>
-                    </div>
-                    <div className="text-sm pt-2">{class_.room}</div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-            {day.classes.length === 0 && (
+                      <div className="flex items-center gap-3">
+                        <div className="font-medium text-lg uppercase">
+                          {class_.name}
+                        </div>
+                        <div className="text-sm">{class_.group}</div>
+                      </div>
+                      <div className="text-sm pt-2">{class_.room}</div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            ) : (
               <p className="text-center text-gray-500 mt-4">
-                Ingen klasser planlagt for denne dagen.
+                Ingen timer planlagt denne dagen.
               </p>
             )}
           </TabsContent>
