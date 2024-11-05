@@ -109,7 +109,7 @@ function ClassesClient({ scheduleData }: { scheduleData: DaySchedule[] }) {
                           {class_.startTime}-{class_.endTime}
                         </div>
                         {class_.age && (
-                          <div className="text-sm text-gray-800 rounded-xl p-1 bg-white shadow-md">
+                          <div className="inline-flex items-center px-2.5 py-1 rounded-full text-sm font-medium bg-white text-gray-800 shadow-sm border border-gray-200">
                             {class_.age}
                           </div>
                         )}
