@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { Button } from "../ui/button";
+
 export const SpondInfo = () => {
   return (
     <div className="mx-auto py-6">
@@ -13,14 +16,14 @@ export const SpondInfo = () => {
       <p className="mb-4">
         Det er enkelt å komme i gang med Spond! Du kan laste ned appen her:
       </p>
-      <a
+      <Link
         href="https://spond.com/welcome"
         className="text-blue-600 underline"
         target="_blank"
         rel="noopener noreferrer"
       >
-        Last ned Spond
-      </a>
+        <Button>Last ned Spond</Button>
+      </Link>
     </div>
   );
 };

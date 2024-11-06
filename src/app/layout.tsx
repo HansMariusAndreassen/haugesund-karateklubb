@@ -31,6 +31,7 @@ export const metadata: Metadata = {
 };
 
 const navItems = [
+  { href: "/skolekarate", label: "Skolekarate" },
   { href: "/treningstilbud", label: "Treningstilbud" },
   { href: "/medlem", label: "Bli medlem" },
   { href: "/sponsor", label: "Sponsor" },

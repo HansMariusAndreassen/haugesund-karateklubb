@@ -20,7 +20,7 @@ export const Header = ({ isOpen, setIsOpen, navItems }: HeaderProps) => {
   return (
     <header className="bg-white shadow-sm">
       <div className="mx-auto px-4 py-2 flex justify-between items-center">
-        <a href="/" className="flex items-center gap-2 text-nowrap">
+        <Link href="/" className="flex items-center gap-2 text-nowrap">
           <Image
             src={"/karateklubblogo.svg"}
             alt="Karate Klubb Logo"
@@ -31,7 +31,7 @@ export const Header = ({ isOpen, setIsOpen, navItems }: HeaderProps) => {
           <h1 className="text-md sm:text-2xl font-bold text-gray-800 inline-block">
             Haugesund Karateklubb
           </h1>
-        </a>
+        </Link>
         <nav className="hidden md:block">
           <ul className="flex space-x-4">
             {navItems.map((item) => (

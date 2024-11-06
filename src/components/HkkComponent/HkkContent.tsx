@@ -27,7 +27,10 @@ export default function HkkContent() {
             Vi har tilpassede ettermiddagstreninger i vår dojo for alle
             ferdighetsnivåer, og vi arrangerer nybegynnertreninger på skoler i
             distriktet. Vi er stolte av å være en klubb for alle, uavhengig av
-            økonomi.
+            økonomi.{" "}
+            <Link href="/skolekarate" className="hover:underline">
+              <strong>Klikk for å se timeplan for skolekarate</strong>
+            </Link>
           </p>
           <p className="text-lg text-gray-700">
             Ingen skal holdes tilbake fra å trene hos oss på grunn av økonomiske
