@@ -56,3 +56,18 @@ export const dayScheduleQuery = groq`
     }
   }
 `;
+
+export const schoolScheduleQuery = groq`
+  *[_type == "schools"] {
+    _id,
+    school,
+    schedule[] {
+      day,
+      classes[] {
+        startTime,
+        endTime,
+        level
+      }
+    }
+  }
+`;
